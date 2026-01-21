@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Aurora Theme Colors */
+  --aurora-purple: 271 100% 66%;
+  /* #b750ff */
+  --neon-lavender: 279 100% 69%;
+  /* #c360ff */
+  --neon-pink: 336 89% 56%;
+  /* #f4297e */
+  --electric-blue: 237 89% 72%;
+  /* #787ff6 */
+
+  --background: 0 0% 0%;
+  /* Pure Black */
+  --foreground: 0 0% 100%;
+  /* Pure White */
+
+  --primary: 271 100% 66%;
+  /* Aurora Purple */
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 336 89% 56%;
+  /* Neon Pink Accent */
+  --secondary-foreground: 0 0% 100%;
+
+  --accent: 237 89% 72%;
+  /* Electric Blue */
+  --accent-foreground: 0 0% 0%;
+
+  --muted: 271 20% 10%;
+  --muted-foreground: 271 20% 70%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 271 30% 20%;
+  --input: 271 30% 20%;
+  --ring: 271 100% 66%;
+
+  --radius: 0.75rem;
+
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Montserrat', sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased overflow-x-hidden;
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    @apply font-bold tracking-tight text-white;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-black/40 border border-white/10;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: 0 8px 32px 0 rgba(183, 80, 255, 0.1);
+  }
+
+  .neon-border {
+    @apply border border-primary/50;
+    box-shadow: 0 0 15px rgba(183, 80, 255, 0.3);
+  }
+
+  .aurora-bg {
+    @apply fixed inset-0 -z-10 overflow-hidden pointer-events-none bg-black;
+  }
+
+  .aurora-blob {
+    @apply absolute opacity-60 rounded-full;
+    width: 45vmax;
+    height: 45vmax;
+    /* Ensure blur is always applied */
+    filter: blur(80px);
+    mix-blend-mode: screen;
+    /* Performance optimizations to prevent "unblurring" */
+    will-change: transform;
+    transform: translateZ(0);
+    top: 0;
+    left: 0;
+  }
+
+  .aurora-1 {
+    @apply bg-[hsl(var(--aurora-purple))];
+    animation: hueRotate 10s linear infinite, aurora-move-1 19s linear infinite;
+  }
+
+  .aurora-2 {
+    @apply bg-[hsl(var(--neon-pink))];
+    animation: hueRotate 15s linear infinite, aurora-move-2 25s linear infinite;
+  }
+
+  .aurora-3 {
+    @apply bg-[hsl(var(--electric-blue))];
+    animation: hueRotate 20s linear infinite, aurora-move-3 15s linear infinite;
+  }
+}
+
+@keyframes hueRotate {
+  to {
+    filter: hue-rotate(360deg) blur(80px);
+  }
+}
+
+/* Optimized animations using TRANSFORM instead of TOP/LEFT 
+  This prevents the browser from dropping the blur effect during rendering.
+*/
+@keyframes aurora-move-1 {
+
+  0%,
+  100% {
+    transform: translate(50vw, 0vh) translateZ(0);
+  }
+
+  25% {
+    transform: translate(0vw, 50vh) translateZ(0);
+  }
+
+  50% {
+    transform: translate(50vw, 100vh) translateZ(0);
+  }
+
+  75% {
+    transform: translate(100vw, 50vh) translateZ(0);
+  }
+}
+
+@keyframes aurora-move-2 {
+
+  0%,
+  100% {
+    transform: translate(100vw, 50vh) translateZ(0);
+  }
+
+  25% {
+    transform: translate(50vw, 100vh) translateZ(0);
+  }
+
+  50% {
+    transform: translate(0vw, 50vh) translateZ(0);
+  }
+
+  75% {
+    transform: translate(50vw, 0vh) translateZ(0);
+  }
+}
+
+@keyframes aurora-move-3 {
+
+  0%,
+  100% {
+    transform: translate(0vw, 100vh) translateZ(0);
+  }
+
+  25% {
+    transform: translate(50vw, 50vh) translateZ(0);
+  }
+
+  50% {
+    transform: translate(100vw, 0vh) translateZ(0);
+  }
+
+  75% {
+    transform: translate(50vw, 50vh) translateZ(0);
+  }
+}
+
+.mouse-glow {
+  @apply fixed pointer-events-none z-[100] w-[400px] h-[400px] rounded-full opacity-20 transition-transform duration-300 ease-out;
+  background: radial-gradient(circle, hsl(var(--aurora-purple)) 0%, transparent 70%);
+  filter: blur(100px);
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.particles-container,
+.particle {
+  @apply hidden;
+  display: none;
+}

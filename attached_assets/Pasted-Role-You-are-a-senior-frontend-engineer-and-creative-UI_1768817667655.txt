@@ -1,0 +1,268 @@
+Role:
+You are a senior frontend engineer and creative UI/UX designer. Your task is to enhance ONLY the UI, visuals, animations, and responsiveness of an existing multi-page cybersecurity awareness website.
+
+⚠️ CRITICAL RULE:
+You must NOT modify, remove, refactor, or interfere with ANY existing feature logic or JavaScript files related to:
+
+Game mechanics
+
+AI chatbot (Gemini API)
+
+Deepfake detection
+
+Scam radar
+
+Login / authentication
+
+You may add separate UI/animation JS and CSS files only.
+
+🔹 COLOR PALETTE (STRICT — DO NOT CHANGE)
+
+Use ONLY these colors:
+
+Aurora Purple: #b750ff
+
+Neon Lavender: #c360ff
+
+Neon Pink Accent: #f4297e
+
+Electric Blue: #787ff6
+
+Pure Black (Primary Background): #000000
+
+Pure White (Text & Contrast): #ffffff
+
+✔️ Backgrounds must be dark / black
+✔️ Visuals should feel like northern lights / aurora in a night sky
+✔️ No light backgrounds anywhere
+
+🔹 VISUAL THEME
+
+Design the website like:
+
+A futuristic AI cyber-security platform under glowing aurora lights
+
+Visual Characteristics:
+
+Black / near-black base background
+
+Flowing aurora gradients (lavender, purple, blue)
+
+Soft grain texture
+
+Blurred glowing light streaks
+
+Depth, glow, and motion
+
+High contrast white text
+
+🔹 BACKGROUND & EFFECTS (MANDATORY)
+🌌 Northern Lights / Aurora Effect
+
+Large animated gradient blobs
+
+Smooth wave-like motion
+
+Colors blend between:
+
+#b750ff
+
+#c360ff
+
+#787ff6
+
+Heavy blur
+
+Positioned behind content
+
+Slow, elegant movement (no distraction)
+
+✨ Particle System
+
+Floating particles on dark background
+
+Subtle glow
+
+Lavender / blue colors
+
+Low opacity
+
+Responsive
+
+Lightweight
+
+🖱️ Mouse Interaction (MANDATORY)
+
+Cursor-following glow orb
+
+Blurred neon light trail
+
+Smooth delayed movement
+
+Colors: lavender + electric blue
+
+No sharp edges
+
+🔹 ANIMATIONS (VERY IMPORTANT)
+Global Animations:
+
+Scroll-based reveal animations
+
+Fade + slide + scale combinations
+
+Staggered animations for cards
+
+Parallax movement for background lights
+
+Smooth page transitions
+
+Use:
+
+IntersectionObserver
+
+CSS keyframes
+
+Custom animation JS (UI-only)
+
+🔹 RESPONSIVENESS (STRICT)
+
+Perfect on:
+
+Mobile
+
+Tablet
+
+Desktop
+
+No layout breaking
+
+Mobile nav with animated hamburger
+
+Touch-friendly buttons
+
+🔹 PAGES & FEATURES (DO NOT CHANGE)
+
+Maintain all existing pages and features exactly:
+
+Home
+
+Scam Awareness Game
+
+AI Chatbot
+
+Deepfake Detection
+
+Scam Radar
+
+Safety & Helplines
+
+Login / Logout
+
+⚠️ Do NOT:
+
+Rename pages
+
+Remove features
+
+Modify feature JS files
+
+🔹 NAVIGATION
+
+Fixed or floating navbar
+
+Neon underline hover effects
+
+Smooth transitions
+
+Clear page indicators
+
+Login button always visible
+
+🔹 UI ELEMENTS
+Buttons
+
+Neon gradient borders
+
+Glow on hover
+
+Slight scale animation
+
+Pink (#f4297e) for CTAs
+
+Cards
+
+Glassmorphism
+
+Semi-transparent black
+
+Subtle border glow
+
+Hover lift effect
+
+🔹 TYPOGRAPHY
+
+Clean modern sans-serif
+
+White text on dark background
+
+Strong headings
+
+Slight letter spacing
+
+No playful fonts
+
+🔹 PERFORMANCE RULES
+
+Smooth 60fps
+
+No heavy libraries
+
+Optimized animations
+
+Clean folder structure:
+
+/css
+
+/js/ui-animations
+
+/assets
+
+🔹 ABSOLUTE SAFETY RULE
+
+❌ DO NOT TOUCH:
+
+Feature logic
+
+API logic
+
+Game question data
+
+Detection logic
+
+Login logic
+
+✅ ONLY enhance:
+
+UI
+
+Visuals
+
+Animations
+
+Layout
+
+🔹 FINAL GOAL
+
+Create:
+
+A dark, aurora-lit, futuristic cybersecurity website that feels premium, animated, and immersive
+
+It should feel like:
+
+AI
+
+Trust
+
+Protection
+
+Awareness

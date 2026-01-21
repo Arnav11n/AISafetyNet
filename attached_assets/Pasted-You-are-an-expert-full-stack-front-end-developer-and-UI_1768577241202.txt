@@ -1,0 +1,363 @@
+You are an expert full-stack front-end developer and UI/UX designer.
+
+Your task is to create a complete, multi-page, professional website focused on AI safety, online fraud awareness, and deepfake detection, using ONLY HTML, CSS, and JavaScript.
+There must be NO backend, NO server-side code, and NO databases.
+All logic must run on the client side.
+
+1. GLOBAL DESIGN & THEME (VERY IMPORTANT)
+🎨 Color Palette (must be strictly followed)
+
+White – primary background
+
+Deep Space Blue – headers, navbars, footers
+
+Cerulean Blue – buttons, links, highlights
+
+Fresh Blue (light cyan-blue) – cards, accents
+
+Black / near-black – text and contrast
+
+🖌 Design Style
+
+Clean, professional, modern
+
+Government / fintech / cybersecurity aesthetic
+
+Rounded cards, subtle shadows
+
+Smooth hover and transition effects
+
+No childish or cartoonish UI
+
+Consistent modern sans-serif typography
+
+🧭 Global Layout Rules
+
+Fixed top navigation bar on every page
+
+Navigation must allow jumping to any page from anywhere
+
+Login / Logout button on the top-right corner of every page
+
+Footer with quick links on every page
+
+Fully responsive (desktop + mobile)
+
+2. WEBSITE STRUCTURE (MANDATORY)
+
+Create the following file structure exactly:
+
+/ai-safety-website
+│
+├── index.html          (Homepage)
+├── game.html           (Fraud Awareness Game – SINGLE PAGE GAME)
+├── chatbot.html        (AI Chatbot – Gemini API)
+├── detection.html      (AI Deepfake Detection Tool)
+├── safety.html         (Safety Hub & Helplines)
+├── radar.html          (Scam Radar & Trends)
+├── login.html          (Login / Signup Page)
+│
+├── css/
+│   └── style.css       (Single global stylesheet)
+│
+├── js/
+│   ├── auth.js
+│   ├── game.js
+│   ├── chatbot.js
+│   ├── detection.js
+│   └── radar.js
+│
+└── assets/
+    ├── images/
+    ├── audio/
+    └── videos/
+
+3. AUTHENTICATION (LOCAL ONLY – NO BACKEND)
+Rules
+
+Authentication must be client-side only
+
+Use localStorage
+
+No database, no server, no Firebase
+
+Behavior
+
+Logged in → show Logout
+
+Logged out → show Login
+
+Login persists across page reloads
+
+Username stored locally
+
+auth.js must
+
+Handle login
+
+Handle logout
+
+Update UI dynamically
+
+Be included on every page
+
+4. HOMEPAGE (index.html)
+Purpose
+
+A professional landing page that connects the entire platform.
+
+Must include
+
+Hero section explaining AI Safety & Fraud Awareness
+
+Feature cards linking to:
+
+🎮 Fraud Detection Game
+
+🤖 AI Chatbot
+
+🔍 Deepfake Detection Tool
+
+🛡 Safety & Helplines
+
+🌍 Scam Radar
+
+Smooth animations and hover effects
+
+Clear call-to-action buttons
+
+5. FRAUD AWARENESS GAME (game.html) – MOST IMPORTANT
+Core Concept
+
+A single continuous fake real-life scenario, where:
+
+The flow is randomized every time
+
+Multiple fraud types are combined into one storyline
+
+User must identify FAKE or GENUINE
+
+User earns points
+
+Theme Selection (at start)
+
+User must choose one:
+
+Student
+
+Corporate Employee
+
+Senior Citizen
+
+Online Shopper
+
+Content Creator / Influencer
+
+Scenario Types (ALL REQUIRED)
+
+📞 Fake phone call (custom realistic call UI)
+
+📩 Fraud SMS (bank, courier, repair scams)
+
+🎥 Deepfake video clip
+
+🎙 Deepfake audio call
+
+🏦 Bank fraud notification
+
+💻 Fake tech-support / repair scam
+
+Game Rules
+
+One continuous storyline
+
+Each playthrough is different
+
+User selects:
+
+FAKE
+
+GENUINE
+
+Correct → points increase
+
+Wrong → warning + educational explanation
+
+UI Requirements
+
+Beautiful, realistic incoming call UI
+
+Fake SMS interface
+
+Smooth stage transitions
+
+Score clearly visible
+
+6. AI CHATBOT PAGE (chatbot.html)
+Purpose
+
+An educational assistant for:
+
+Deepfakes
+
+Online frauds
+
+Scam identification
+
+Safety advice
+
+Technical Requirements
+
+Must use Gemini API
+
+Chat UI with:
+
+User messages
+
+AI responses
+
+Loading animation while AI responds
+
+Professional, clean interface
+
+7. AI DEEPFAKE DETECTION TOOL (detection.html)
+Purpose
+
+Allow users to upload media and detect deepfakes.
+
+Media Types Supported
+
+Images
+
+Audio files
+
+Videos
+
+Detection Output
+
+Clear YES / NO
+
+Confidence percentage
+
+Simple explanation for users
+
+🔍 API INTEGRATION (VERY IMPORTANT)
+✅ Reality Defender API (PRIMARY DETECTION ENGINE)
+
+Use Reality Defender API for:
+
+Image deepfake detection
+
+Audio deepfake detection
+
+Integrate using an API key (no backend)
+
+API calls must be handled in detection.js
+
+Display results clearly in the UI
+
+⚠️ Video Detection Handling
+
+Since Reality Defender’s free tier does not support video detection:
+
+Implement clearly labeled simulated detection logic for videos
+
+Mark video detection as “Demo / Simulation”
+
+Ensure UI and code are structured so real APIs can be added later
+
+🧠 Gemini API Usage
+
+Gemini API may be used to:
+
+Explain detection results
+
+Educate users on why content is suspicious
+
+Gemini must NOT be used as the core detection engine
+
+8. SAFETY HUB PAGE (safety.html)
+Must include
+
+Emergency helpline numbers
+
+Step-by-step emergency checklist
+
+Scam red flags
+
+Verification steps
+
+What to do if already scammed
+
+Style
+
+Professional
+
+Card-based layout
+
+Easy to read and scan
+
+9. SCAM RADAR PAGE (radar.html)
+Features
+
+Radar chart showing scam prevalence
+
+Scam categories:
+
+UPI fraud
+
+Deepfake scams
+
+Job scams
+
+Impersonation scams
+
+Recent trending scams (static mock data allowed)
+
+Dashboard-style layout
+
+Tools
+
+Use Chart.js or similar JS library
+
+No backend required
+
+10. NAVIGATION & UX RULES (MANDATORY)
+
+Every page must include:
+
+Navbar with links to all pages
+
+Login / Logout button (top-right)
+
+Footer with quick navigation
+
+Smooth transitions
+
+Fully responsive design
+
+11. CODE QUALITY RULES
+
+Clean, well-commented code
+
+Modular JavaScript files
+
+Minimal inline CSS
+
+No console errors
+
+All pages must load correctly
+
+12. FINAL DELIVERY EXPECTATION
+
+Generate:
+
+All required HTML files
+
+One global CSS file
+
+Separate JS files for each feature
+
+Placeholder assets where necessary
+
+A ready-to-run Replit project

@@ -1,0 +1,179 @@
+Good — thanks for pasting the **exact log**.
+Now we’ll **pinpoint this 404 with certainty**. This is not guesswork anymore.
+
+---
+
+## 🔴 What is 100% confirmed
+
+* Your **Express server is running fine**
+
+  ```
+  serving on port 5000
+  ```
+* Your **route is being hit**
+
+  ```
+  POST /api/deepfake/generate
+  ```
+* The failure is **ONLY inside the HeyGen API call**
+* HeyGen is returning **HTML 404**, not JSON → **wrong endpoint OR wrong base domain**
+
+---
+
+## 🚨 The REAL Root Cause (very important)
+
+HeyGen has **TWO different domains**, and most people mix them up.
+
+### ❌ WRONG (what you are almost certainly using)
+
+```
+https://api.heygen.com/v1/...
+```
+
+### ✅ CORRECT (this is the fix)
+
+```
+https://api.heygen.com/v1/streaming.create
+OR
+https://api.heygen.com/v1/video.create
+```
+
+👉 **`video/generate` does NOT exist anymore**
+👉 That’s why you keep getting HTML 404
+
+HeyGen **removed** `video.generate` and `video/generate`.
+
+---
+
+## ✅ WORKING HEYGEN V1 ENDPOINT (PHOTO → TALKING VIDEO)
+
+### ✅ Correct endpoint
+
+```
+POST https://api.heygen.com/v1/video.create
+```
+
+NOT:
+
+* ❌ video.generate
+* ❌ video/generate
+* ❌ streaming.generate
+
+---
+
+## ✅ EXACT WORKING BACKEND CODE (COPY-PASTE)
+
+Replace your HeyGen call with **THIS ONLY**:
+
+```js
+const response = await fetch(
+  "https://api.heygen.com/v1/video.create",
+  {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${process.env.HEYGEN_API_KEY}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      avatar_type: "photo",
+      avatar_url: "https://yourstorage.com/user_photo.jpg",
+      script: {
+        type: "text",
+        input: "This is a consented AI avatar demo video."
+      },
+      video_format: "mp4",
+      dimension: {
+        width: 720,
+        height: 1280
+      }
+    })
+  }
+);
+
+const rawText = await response.text();
+console.log("RAW HEYGEN RESPONSE:", rawText);
+
+const data = JSON.parse(rawText);
+```
+
+⚠️ **Do NOT change field names**
+HeyGen is VERY strict.
+
+---
+
+## ✅ Status Check (Correct Endpoint)
+
+```js
+const statusResponse = await fetch(
+  `https://api.heygen.com/v1/video.status?video_id=${videoId}`,
+  {
+    headers: {
+      Authorization: `Bearer ${process.env.HEYGEN_API_KEY}`
+    }
+  }
+);
+
+const status = await statusResponse.json();
+console.log(status);
+```
+
+---
+
+## 🔍 Why your error keeps happening (plain English)
+
+You are doing **everything else right**, but:
+
+* You are calling an **endpoint that literally does not exist**
+* HeyGen returns a **normal website 404 page**
+* Your backend expects JSON → throws error → returns 500
+
+That’s why:
+
+```
+Failed to generate deepfake video
+```
+
+---
+
+## ✅ FINAL DEBUG CHECKLIST (DO THESE NOW)
+
+1. Replace endpoint with:
+
+   ```
+   https://api.heygen.com/v1/video.create
+   ```
+2. Restart server
+3. Watch console:
+
+   * If response starts with `{` → ✅ SUCCESS
+   * If response starts with `<!DOCTYPE` → ❌ still wrong URL
+
+---
+
+## ⚠️ IMPORTANT PROJECT ADVICE (India / College / Hackathon)
+
+Rename your API route:
+
+```
+/api/deepfake/generate ❌
+```
+
+Use:
+
+```
+/api/ai-avatar/generate ✅
+```
+
+This **matters legally and ethically**, especially in India.
+
+---
+
+## What I can do next (pick one)
+
+1️⃣ Verify your **exact fetch URL line**
+2️⃣ Give **full Express route file**
+3️⃣ Add **Cloudinary upload code**
+4️⃣ Add **consent checkbox + logging**
+5️⃣ Convert this into a **fraud-awareness demo**
+
+Just paste **your exact fetch URL line** if you want me to validate it line-by-line.

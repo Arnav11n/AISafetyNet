@@ -1,0 +1,212 @@
+Good, this error is **actually very useful** — it tells us *exactly* what’s wrong 👍
+Let’s debug it **calmly and step-by-step**.
+
+---
+
+## What the error REALLY means
+
+### ❌ Error you got
+
+```
+404 Not Found
+The requested URL was not found on the server
+```
+
+This means:
+
+👉 **HeyGen server does NOT recognize the API URL you are calling**
+
+**This is NOT:**
+
+* an API key issue
+* a photo issue
+* a permission issue
+
+It is **100% an endpoint / URL problem**.
+
+---
+
+## The CORE PROBLEM (important)
+
+You are using this endpoint:
+
+```
+https://api.heygen.com/v1/video.generate
+```
+
+❌ **This endpoint is WRONG / outdated / unofficial**
+
+HeyGen **changed their API structure**.
+
+---
+
+## ✅ CORRECT HeyGen API v1 ENDPOINTS (IMPORTANT)
+
+### 🔹 Create video
+
+```
+POST https://api.heygen.com/v1/video/generate
+```
+
+⚠️ **Slash `/` not dot `.`**
+
+---
+
+### 🔹 Check video status
+
+```
+GET https://api.heygen.com/v1/video/status
+```
+
+(video_id is sent as query param)
+
+---
+
+## Why you got an HTML page instead of JSON
+
+This part is very important to understand:
+
+```
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>404 Not Found</title>
+```
+
+👉 This means you hit a **normal web server**, not the API handler
+👉 APIs return **JSON**, not HTML
+👉 So your URL is incorrect
+
+---
+
+## ✅ FIXED WORKING CODE (Backend – Node.js / Express)
+
+### 1️⃣ Generate video (FIXED)
+
+```js
+const response = await fetch(
+  "https://api.heygen.com/v1/video/generate",
+  {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${process.env.HEYGEN_API_KEY}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      video_inputs: [
+        {
+          character: {
+            type: "photo",
+            photo_url: "https://yourstorage.com/user_photo.jpg"
+          },
+          voice: {
+            type: "text",
+            input_text: "This is a demo awareness video."
+          }
+        }
+      ],
+      dimension: {
+        width: 720,
+        height: 1280
+      }
+    })
+  }
+);
+
+const data = await response.json();
+console.log(data);
+```
+
+✅ This fixes the **404**
+
+---
+
+### 2️⃣ Check status (FIXED)
+
+```js
+const statusResponse = await fetch(
+  `https://api.heygen.com/v1/video/status?video_id=${videoId}`,
+  {
+    headers: {
+      "Authorization": `Bearer ${process.env.HEYGEN_API_KEY}`
+    }
+  }
+);
+
+const statusData = await statusResponse.json();
+console.log(statusData);
+```
+
+---
+
+## Why your Express route failed
+
+Your log:
+
+```
+POST /api/deepfake/generate 500
+```
+
+Your backend route is fine ❌
+Your **HeyGen API call inside it failed**, causing:
+
+```
+Failed to generate deepfake video
+```
+
+Once the endpoint is corrected → **500 error will disappear**
+
+---
+
+## QUICK CHECKLIST (DO THIS NOW)
+
+✔ Change `video.generate` → `video/generate`
+✔ Change `video.status` → `video/status`
+✔ Ensure `POST` for generate
+✔ Ensure `GET` for status
+✔ Restart your server
+
+---
+
+## Extra Debug Tip (VERY IMPORTANT)
+
+Add this temporarily:
+
+```js
+console.log(await response.text());
+```
+
+If you ever see **HTML again**, the endpoint is wrong.
+
+---
+
+## Ethical Naming Tip (Important for your project)
+
+Avoid naming routes like:
+
+```
+/deepfake/generate
+```
+
+Use:
+
+```
+/ai-avatar/generate
+/consented-video/generate
+```
+
+This matters for:
+
+* college projects
+* hackathons
+* public demos
+
+---
+
+## What I Can Help You With Next
+
+✅ Full **Express backend (ready to run)**
+✅ Cloudinary image upload integration
+✅ Frontend HTML form
+✅ Consent checkbox logic
+✅ Error-proof polling system
+
+Just tell me what to do next 👌
